@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node{
+	int data;
+	struct node* prev;
+	struct node* next;
+};
+
+struct node* addempty(int data){
+	struct node* temp=(struct node*)malloc(sizeof(struct node));
+	temp->data=data;
+	temp->next=NULL;
+	temp->prev=NULL;
+	return temp;
+}
+
+struct node* addbeg(struct node* head, int data){
+	struct node* current=(struct node*)malloc(sizeof(struct node));
+	current->data=data;
+	current->prev=NULL;
+	current->next=head;
+	head=head->prev;
+	return head;
+}
+
+void print(struct node* head){
+	struct node* ptr;
+	ptr=head;
+	while(ptr!=NULL){
+		printf("%d",ptr->data);
+		ptr=ptr->data;
+	}
+}
+
+int main(){
+	struct node* head=(struct node*)malloc(sizeof(struct node));
+	
+	head=addempty(78);
+	head=addbeg(head,8);
+	head=addbeg(head,7);
+			
+	print(head);
+}
